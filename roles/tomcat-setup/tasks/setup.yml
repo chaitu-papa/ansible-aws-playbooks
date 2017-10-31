@@ -1,0 +1,70 @@
+-
+# tasks file for tomcat
+ - name: add group "tomcat"
+   become: yes
+   group: name=tomcat
+ 
+ - name: add user "tomcat"
+   user: name=tomcat group=tomcat home=/home/tomcat createhome=no
+   become: True
+   become_method: sudo 
+
+ - name: Download Tomcat 
+   become: yes
+   get_url: url=http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz dest=/opt/apache-tomcat-7.0.61.tar.gz
+ 
+ - name: create directory
+   become: yes
+   file: path={{ destination_tomcat }} mode=0755 state=directory
+
+ - name: Extract archive
+   become: yes
+   command: chdir=/usr/share tar xvf /opt/apache-tomcat-7.0.61.tar.gz -C {{ destination_tomcat }} --strip 1
+ 
+ - name: Symlink install directory
+   become: yes
+   file: src={{ destination_tomcat }} path={{ tomcat_home }} state=link
+ 
+ - name: Change ownership of Tomcat installation
+   become: yes
+   file: path={{ tomcat_home }}/ owner=tomcat group=tomcat state=directory recurse=yes
+
+ - name: Configure Tomcat server 
+   become: yes
+   template: src=server.xml dest={{ tomcat_home }}/conf/
+   notify: restart tomcat
+ 
+ - name: Configure Tomcat users
+   become: yes
+   template: src=tomcat-users.xml dest={{ tomcat_home }}/conf/
+   notify: restart tomcat
+ 
+ - name: Install Tomcat init script
+   become: yes
+   template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+   notify: restart tomcat
+
+
+ - name: insert firewalld rule for tomcat http port
+   become: yes
+   firewalld: port={{ http_port }}/tcp permanent=true state=enabled immediate=yes
+ 
+ - name: insert firewalld rule for tomcat https port
+   become: yes
+   firewalld: port={{ https_port }}/tcp permanent=true state=enabled immediate=yes
+
+# Pause for 5 minutes to build app cache.
+# - pause:
+#    minutes: 1 
+
+ - name: Stop Tomcat
+   become: yes
+   shell: /etc/init.d/tomcat stop 
+
+ - name: Start Tomcat
+   become: yes
+   shell: /etc/init.d/tomcat start
+
+ - name: wait for tomcat to start
+   become: yes
+   wait_for: port={{http_port}} 

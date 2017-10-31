@@ -1,0 +1,14 @@
+---
+# handlers file for common
+  - name: restart sshd
+    become: yes
+    service: name=sshd state=restarted
+  - name: restart ntpd
+    become: yes
+    service: name=ntpd state=restarted
+  - name: restart httpd 
+    become: yes
+    service: name=httpd state=restarted 
+  - name: restart nrpe 
+    become: yes
+    service: name=nrpe state=restarted 

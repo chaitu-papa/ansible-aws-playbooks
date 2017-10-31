@@ -1,0 +1,11 @@
+---
+# This will install yum repos 
+- name: Add xxxx repositories
+  become: yes
+  yum_repository:
+   name: epel
+   description: EPEL YUM repo
+   file: external_repos
+   baseurl: http://dl.fedoraproject.org/pub/epel/7/x86_64/
+   gpgcheck: no
+

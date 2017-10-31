@@ -1,0 +1,9 @@
+---
+# tasks file for common
+  - include: yum-repos.yml
+  - include: packages.yml
+  - include: motd.yml
+  - include: ntp.yml
+  - include: httpd.yml
+  - include: ssh-config.yml
+  - include: nagios-client.yml

@@ -1,0 +1,10 @@
+---
+# handlers file for tomcat
+
+ - name: restart tomcat
+   become: yes 
+   shell: /etc/init.d/tomcat restart
+
+ - name: restart iptables
+   become: yes 
+   service: name=iptables state=restarted

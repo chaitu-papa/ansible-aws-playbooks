@@ -1,0 +1,34 @@
+---
+# deploy file for tomcat
+ - name: Clean helloworld
+   become: yes
+   file:
+    state: absent
+    path: "{{ tomcat_home }}/webapps/{{ item }}"
+   with_items:
+    - "{{ app_name }}"
+    - "{{ app_name }}.war"
+
+ - name: Download helloworld 
+   become: yes
+#   become_user: tomcat
+   maven_artifact:
+    group_id: com.cts
+    artifact_id: "{{ app_name }}"
+    extension: war  
+    repository_url: "{{ nexus_url }}"
+    username: admin
+    password: admin123
+    version: "{{ app_version }}"
+    dest: /tmp/{{ app_name }}.war
+ 
+ - name: deploy to Tomcat 
+   become: yes
+   copy: 
+     src: /tmp/{{ app_name }}.war 
+     dest: "{{ tomcat_home }}/webapps"
+     owner: tomcat
+     group: tomcat 
+     mode: 0755
+     remote_src: yes
+   notify: restart tomcat

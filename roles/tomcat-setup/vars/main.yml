@@ -1,0 +1,12 @@
+---
+# vars file for tomcat
+java_home8: /lib/jvm/jre-1.8.0-openjdk-1.8.0.131-3.b12.el7_3.x86_64/
+tomcat_home: /usr/share/tomcat
+destination_tomcat: /opt/apache-tomcat-7.0.61
+http_port: 49003
+https_port: 8443
+
+# This will configure a default manager-gui user:
+
+admin_username: admin
+admin_password: adminsecret

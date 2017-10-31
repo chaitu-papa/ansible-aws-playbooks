@@ -1,0 +1,14 @@
+--- 
+ - name: ntp additional packages 
+   become: yes
+   yum: pkg={{ item }} 
+        state=present 
+        update_cache=yes
+   with_items: 
+     - ntp
+   notify: 
+         - restart ntpd
+
+ - name: Start ntpd
+   become: yes
+   service: name=ntpd state=started enabled=yes

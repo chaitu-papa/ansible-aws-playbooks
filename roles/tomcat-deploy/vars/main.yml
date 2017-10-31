@@ -1,0 +1,6 @@
+---
+# vars file for tomcat-deploy
+tomcat_home: /usr/share/tomcat
+app_name: customerApp
+app_version: 0.1-SNAPSHOT
+nexus_url: http://34.196.120.121:8081/nexus/content/repositories/snapshots

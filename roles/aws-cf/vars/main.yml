@@ -1,0 +1,9 @@
+---
+# vars file for aws
+app_name: customerApp
+instance_type: t2.micro
+env_name: DEV
+ami_id: ami-b63769a1
+sg_group_id: sg-9157bbe0
+vpc_subnet_id: subnet-f02683aa
+

@@ -1,0 +1,62 @@
+---
+# This will execute cloud formation template
+- ec2_ami_find:
+    aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+    aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+    name: "{{ app_name }}*"
+    owner: "540714612399"
+    region: us-east-1
+    sort: name
+    sort_order: descending
+    sort_end: 1
+  register: ami_find
+
+- debug : 
+     msg: "{{ ami_find.results[0].ami_id }}"
+
+- name: delete stack task
+  cloudformation:
+      stack_name: "{{ env_name }}-{{ app_name }}-immutable"
+      state: "absent"
+      region: "us-east-1"
+  ignore_errors: yes
+
+- name: launch ansible cloudformation
+  cloudformation:
+    stack_name: "{{ env_name }}-{{ app_name }}-immutable"
+    state: "present"
+    region: "us-east-1"
+    disable_rollback: true
+    template: "roles/aws-cf/templates/cf.json"
+    template_parameters:
+      BaseImageId: "{{ ami_find.results[0].ami_id }}"
+      InstanceType: "{{ InstanceType }}"
+      InstanceSecurityGroup: "{{ cf_sg_group }}"
+      MinInstances: "{{ min_instances }}"
+      MaxInstances: "{{ max_instances }}"
+      InstanceSubnets: "{{ cf_subnet }}"
+      ELBR53HostedZone: "{{ hosted_zone }}"
+      ELBR53DNSName: "{{ env_name }}-{{ app_name }}"   
+    tags:
+      Stack: "{{ app_name }}-immutable-{{ env_name }}"
+      Name: "{{ app_name }}-{{ env_name }}"
+      Environment: "{{ app_name }}-{{ env_name }}"
+  register: stack 
+
+- debug :
+     msg: "{{ stack['stack_outputs']['ELBURL'] }}"
+
+- pause:
+    minutes: 1
+
+- name: Route 53 
+  route53:
+      command: create
+      zone: "{{ hosted_zone }}"
+      record: "{{ dns_name }}-{{ app_name }}.{{ hosted_zone }}"
+      type: A
+      value: "{{ stack['stack_outputs']['ELBURL'] }}"
+      alias: True
+      alias_hosted_zone_id: "{{ alias_hosted_zone_id }}"
+      overwrite: yes
+      private_zone: yes

@@ -1,0 +1,40 @@
+--- 
+ - name: standard install additional packages 
+   become: yes
+   yum: pkg={{ item }} 
+        state=present 
+        update_cache=yes
+   with_items: 
+     - git
+     - tar
+     - gzip
+     - wget
+     - java-1.8.0-openjdk-1.8.0.131-3.b12.el7_3
+     - libselinux-python
+     - libsemanage-python
+     - firewalld
+     - python-pip
+
+ - name: remove additional packages 
+   become: yes
+   yum: pkg={{ item }} 
+        state=removed
+        update_cache=yes
+   with_items: 
+     - java-1.7.0-openjdk
+
+ - name: setenforce permisive
+   become: yes
+   selinux:
+    policy: targeted
+    state: permissive
+
+ - name: Start firewalld
+   become: yes
+   service: name=firewalld state=started enabled=yes
+
+ - name: pip module 
+   become: yes
+   pip: name={{ item }}
+   with_items:
+    - boto

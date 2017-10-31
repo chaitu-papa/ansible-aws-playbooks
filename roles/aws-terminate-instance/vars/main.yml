@@ -1,0 +1,4 @@
+---
+# vars file for aws-create-ami
+app_name: cusotmerApp
+region: 'us-east-1'
