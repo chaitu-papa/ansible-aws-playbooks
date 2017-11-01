@@ -13,7 +13,7 @@
    become: yes
 #   become_user: tomcat
    maven_artifact:
-    group_id: com.cts
+    group_id: "{{ group_id }}"
     artifact_id: "{{ app_name }}"
     extension: war  
     repository_url: "{{ nexus_url }}"
