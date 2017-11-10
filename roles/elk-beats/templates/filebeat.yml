@@ -70,8 +70,8 @@ filebeat.prospectors:
 # Optional fields that you can specify to add additional information to the
 # output.
 fields:
-  env: DEV
-  app-name: spring-petclinic 
+  env: {{ env_name }}
+  app-name: {{ app_name }} 
 #================================ Outputs =====================================
 
 # Configure what outputs to use when sending the data collected by the beat.
@@ -80,7 +80,7 @@ fields:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["34.196.120.121:9200"]
+  hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -90,7 +90,7 @@ output.elasticsearch:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["34.196.120.121:5044"]
+  hosts: ["{{ elk_hostname }}:{{ logstash_port }}"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
