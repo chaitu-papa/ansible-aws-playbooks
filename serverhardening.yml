@@ -3,3 +3,4 @@
    user: ec2-user
    roles:
       - server-hardening
+      - elk-beats

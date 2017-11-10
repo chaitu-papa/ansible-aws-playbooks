@@ -1,0 +1,10 @@
+---
+# handlers file for tomcat
+
+ - name: restart beat 
+   become: yes 
+   shell: /etc/init.d/filebeat restart
+
+ - name: restart beat 
+   become: yes 
+   shell: /etc/init.d/metricbeat restart
