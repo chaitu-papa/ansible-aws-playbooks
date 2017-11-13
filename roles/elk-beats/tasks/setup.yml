@@ -21,4 +21,12 @@
   with_items:
       - filebeat
       - metricbeat
-  notify: restart beat
+  notify: restart file beat
+  notify: restart metric beat
+
+- name: Start beats
+  become: yes
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+      - filebeat
+      - metricbeat
