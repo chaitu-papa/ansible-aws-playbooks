@@ -21,8 +21,6 @@
   with_items:
       - filebeat
       - metricbeat
-  notify: restart file beat
-  notify: restart metric beat
 
 - name: Start beats
   become: yes
