@@ -83,7 +83,7 @@ output.elasticsearch:
   hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
   template.name: "filebeat"
   template.path: "filebeat.template.json"
-  template.overwrite: false
+  template.overwrite: true
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
