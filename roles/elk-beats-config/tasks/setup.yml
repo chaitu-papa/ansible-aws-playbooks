@@ -1,0 +1,11 @@
+---
+# tasks for config beats 
+
+- name:  beat copy
+  become: yes
+  template: src={{ item }}.yml dest=/etc/{{ item }}/
+  with_items:
+      - filebeat
+      - metricbeat
+  notify: restart file beat
+  notify: restart metric beat
