@@ -71,12 +71,12 @@ fields:
 # Multiple outputs may be used.
 
 #-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
+#output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
-  template.name: "metricbeat"
-  template.path: "metricbeat.template.json"
-  template.overwrite: true
+#  hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
+#  template.name: "metricbeat"
+#  template.path: "metricbeat.template.json"
+#  template.overwrite: true
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -84,9 +84,9 @@ output.elasticsearch:
   #password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
-#output.logstash:
+output.logstash:
   # The Logstash hosts
-  #hosts: ["{{ elk_hostname }}:{{ logstash_port }}"]
+  hosts: ["{{ elk_hostname }}:{{ logstash_port }}"]
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
   #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
@@ -106,4 +106,4 @@ output.elasticsearch:
 # At debug level, you can selectively enable logging only for some components.
 # To enable all selectors use ["*"]. Examples of other selectors are "beat",
 # "publish", "service".
-#logging.selectors: ["*"]
+logging.selectors: ["*"]
