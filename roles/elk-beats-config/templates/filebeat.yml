@@ -81,9 +81,9 @@ fields:
 output.elasticsearch:
   # Array of hosts to connect to.
  hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
-  template.name: "filebeat"
-  template.path: "filebeat.template.json"
-  template.overwrite: true
+  #template.name: "filebeat"
+  #template.path: "filebeat.template.json"
+  #template.overwrite: true
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -114,4 +114,4 @@ output.logstash:
 # At debug level, you can selectively enable logging only for some components.
 # To enable all selectors use ["*"]. Examples of other selectors are "beat",
 # "publish", "service".
- logging.selectors: ["*"]
+# logging.selectors: ["*"]
