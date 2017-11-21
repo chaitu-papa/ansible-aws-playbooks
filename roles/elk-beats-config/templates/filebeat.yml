@@ -78,12 +78,12 @@ fields:
 # Multiple outputs may be used.
 
 #-------------------------- Elasticsearch output ------------------------------
-#output.elasticsearch:
+output.elasticsearch:
   # Array of hosts to connect to.
-# hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
-#  template.name: "filebeat"
-#  template.path: "filebeat.template.json"
-#  template.overwrite: true
+ hosts: ["{{ elk_hostname }}:{{ elastic_port }}"]
+  template.name: "filebeat"
+  template.path: "filebeat.template.json"
+  template.overwrite: true
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
