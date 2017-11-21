@@ -91,9 +91,9 @@ output.elasticsearch:
   #password: "changeme"
 
 #----------------------------- Logstash output --------------------------------
-output.logstash:
+#output.logstash:
   # The Logstash hosts
-  hosts: ["{{ elk_hostname }}:{{ logstash_port }}"]
+#  hosts: ["{{ elk_hostname }}:{{ logstash_port }}"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
