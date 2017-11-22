@@ -70,8 +70,8 @@ filebeat.prospectors:
 # Optional fields that you can specify to add additional information to the
 # output.
 fields:
-  env: {{ env_name }}
-  app-name: {{ app_name }} 
+  env: ${env_name}
+  app-name: ({ app_name }} 
 #================================ Outputs =====================================
 
 # Configure what outputs to use when sending the data collected by the beat.

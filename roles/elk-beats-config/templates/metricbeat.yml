@@ -61,7 +61,7 @@ metricbeat.modules:
 # Optional fields that you can specify to add additional information to the
 # output.
 fields:
-  env: {{ env_name }}
+  env: ${env_name}
   app-name: {{ app_name }}
 
 
