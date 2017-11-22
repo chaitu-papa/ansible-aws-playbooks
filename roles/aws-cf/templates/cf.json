@@ -116,9 +116,10 @@
         "UserData"       : { "Fn::Base64" : { "Fn::Join" : ["", [
                "#!/bin/bash -x\n",
                "sudo export env_name=",
-		{ "Ref" : "Environment" },
-               "sudo /etc/init.d/metricbeat restart",
-               "sudo /etc/init.d/filebeat restart",
+		{ "Ref" : "Environment" },"\n",
+               "sudo echo "$env_name" >> /tmp/env.log \n", 
+               "sudo /etc/init.d/metricbeat restart\n",
+               "sudo /etc/init.d/filebeat restart\n",
                "sudo /etc/init.d/tomcat start\n" ]   ]      }
         },
         "InstanceType" : { "Ref" : "InstanceType" }       
