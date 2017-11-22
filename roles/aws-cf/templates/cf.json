@@ -117,7 +117,6 @@
                "#!/bin/bash -x\n",
                "sudo export env_name=",
 		{ "Ref" : "Environment" },"\n",
-               "sudo echo "$env_name" >> /tmp/env.log \n", 
                "sudo /etc/init.d/metricbeat restart\n",
                "sudo /etc/init.d/filebeat restart\n",
                "sudo /etc/init.d/tomcat start\n" ]   ]      }
