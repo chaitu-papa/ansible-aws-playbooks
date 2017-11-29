@@ -14,6 +14,7 @@
      - libsemanage-python
      - firewalld
      - python-pip
+     - syslog
 
  - name: remove additional packages 
    become: yes
@@ -38,3 +39,6 @@
    pip: name={{ item }}
    with_items:
     - boto
+ - name: Start syslog
+   become: yes
+   service: name=syslog state=started enabled=yes
