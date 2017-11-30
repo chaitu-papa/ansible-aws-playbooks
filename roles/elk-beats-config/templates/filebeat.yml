@@ -17,7 +17,7 @@ filebeat.modules:
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
-    var.paths: ["/var/log/*"]
+    var.paths: ["/var/log/messages*","/var/log/secure*"]
 
     # Prospector configuration (advanced). Any prospector configuration option
     # can be added under this section.
@@ -48,7 +48,7 @@ filebeat.modules:
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
-    #var.paths:
+    var.paths:["/usr/share/tomcat/logs/localhost_access_log.*.txt"]
 
     # Prospector configuration (advanced). Any prospector configuration option
     # can be added under this section.
