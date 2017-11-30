@@ -7,10 +7,5 @@
   with_items:
       - filebeat
       - metricbeat
-- name: template beat copy
-  become: yes
-  template: src={{ item }}.full.yml dest=/etc/{{ item }}/
-  with_items:
-      - filebeat
   notify: restart file beat
   notify: restart metric beat
