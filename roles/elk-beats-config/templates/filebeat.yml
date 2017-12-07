@@ -119,7 +119,7 @@ filebeat.prospectors:
 fields:
   env: ${env_name}
   app-name: {{ app_name }} 
-  app-version: {{ app_version }}
+  app-version: ${ app_version }
 #================================ Outputs =====================================
 
 # Configure what outputs to use when sending the data collected by the beat.

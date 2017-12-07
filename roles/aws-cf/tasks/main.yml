@@ -36,7 +36,7 @@
       MaxInstances: "{{ max_instances }}"
       Environment: "{{ env_name }}"
       InstanceSubnets: "{{ cf_subnet }}"
-      ELBR53HostedZone: "{{ hosted_zone }}"
+      AppVersion: "{{ app_version }}"
       ELBR53DNSName: "{{ env_name }}-{{ app_name }}"   
     tags:
       Stack: "{{ app_name }}-immutable-{{ env_name }}"

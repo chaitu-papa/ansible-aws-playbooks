@@ -62,12 +62,12 @@
       "Type" : "String",
       "Default" : "customerApp"
     },
-    "ELBR53HostedZone" : {
+    "AppVersion" : {
       "Type" : "String",
-      "Description" : "The DNS name of an existing Amazon Route 53 hosted zone. DNS record for the LoadBalancer will be added in this zone.",
+      "Description" : "APPLICATION VERSION.",
       "AllowedPattern" : "(?!-)[a-zA-Z0-9-.]{1,63}(?<!-)",
-      "ConstraintDescription" : "Must be a valid DNS zone name.",
-      "Default" : "devops.cts.com"
+      "ConstraintDescription" : "Must be a valid app version.",
+      "Default" : "1.0.66"
     },
 	
     "SSHLocation" : {      
@@ -118,6 +118,8 @@
                "sudo su - \n",
                "export env_name=",
 		{ "Ref" : "Environment" },"\n",
+               "export app_version=",
+		{ "Ref" : "AppVersion" },"\n",
                "cd /etc/init.d\n",
                "sh metricbeat restart\n",
                "sh filebeat restart\n",
