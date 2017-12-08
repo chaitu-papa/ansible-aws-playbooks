@@ -4,4 +4,4 @@ java_home8: /lib/jvm/jre-1.8.0-openjdk-1.8.0.131-3.b12.el7_3.x86_64/
 tomcat_home: /usr/share/tomcat
 elk_hostname: 34.196.120.121
 logstash_port: 5044
-elastic_port: 9200
+elastic_port: 9201
