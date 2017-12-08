@@ -62,7 +62,8 @@ metricbeat.modules:
 # output.
 fields:
   env: ${env_name}
-  app-name: {{ app_name }}
+  app_name: {{ app_name }}
+  app_version: ${app_version}
 
 
 #================================ Outputs =====================================
