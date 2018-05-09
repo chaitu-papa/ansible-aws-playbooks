@@ -13,11 +13,11 @@
  
 #Location of JAVA_HOME (bin files)
 export JAVA_HOME={{ java_home8 }}
-export db.script=mysql
-export jdbc.driverClassName=com.mysql.jdbc.Driver
-export jdbc.url=jdbc:mysql://34.196.120.121:3306/petclinic?useUnicode=true
-export jdbc.username=root
-export jdbc.password=mypassword
+export db_script=mysql
+export jdbc_driverClassName=com.mysql.jdbc.Driver
+export jdbc_url=jdbc:mysql://34.196.120.121:3306/petclinic?useUnicode=true
+export jdbc_username=root
+export jdbc_password=mypassword
  
 #Add Java binary files to PATH
 export PATH=$JAVA_HOME/bin:$PATH
