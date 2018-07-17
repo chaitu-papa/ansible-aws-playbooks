@@ -64,8 +64,7 @@ fields:
   env: ${env_name}
   app_name: {{ app_name }}
   app_version: ${app_version}
-
-
+  component_name: "aws"
 #================================ Outputs =====================================
 
 # Configure what outputs to use when sending the data collected by the beat.
