@@ -2,5 +2,6 @@
  - hosts: tag_Environment_{{ env_name }}
    user: ec2-user
    roles:
+      - dev-sec.os-hardening
       - server-hardening
       - elk-beats
