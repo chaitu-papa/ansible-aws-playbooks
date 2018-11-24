@@ -1,0 +1,27 @@
+---
+- name: install modprobe to disable filesystems | os-10
+  become: yes
+  package:
+    name: '{{ modprobe_package }}'
+    state: 'present'
+
+- name: check if efi is installed
+  become: yes
+  stat:
+    path: "/sys/firmware/efi"
+  register: efi_installed
+
+- name: remove vfat from fs-list if efi is used
+  become: yes
+  set_fact:
+    os_unused_filesystems: "{{ os_unused_filesystems | difference('vfat') }}"
+  when: efi_installed.stat.isdir is defined and efi_installed.stat.isdir
+
+- name: disable unused filesystems | os-10
+  become: yes
+  template:
+    src: 'etc/modprobe.d/modprobe.j2'
+    dest: '/etc/modprobe.d/dev-sec.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
