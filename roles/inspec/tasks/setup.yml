@@ -1,0 +1,17 @@
+---
+# tasks for inspec 
+
+- name: standard install inspec  packages
+  become: yes
+  yum: pkg={{ item }}
+        state=present
+  with_items:
+      - https://packages.chef.io/files/stable/inspec/3.0.52/el/7/inspec-3.0.52-1.el7.x86_64.rpm
+
+- git:
+    repo: 'https://github.com/chaitu-papa/linux-baseline.git'
+    dest: linux-baseline 
+
+- name: Executing a script
+  command: "inspec exec linux-baseline"
+

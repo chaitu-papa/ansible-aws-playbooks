@@ -5,3 +5,4 @@
       - os-hardening
       - server-hardening
       - elk-beats
+      - inspec
