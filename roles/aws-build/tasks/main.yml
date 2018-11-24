@@ -1,7 +1,7 @@
 ---
- - name: Gather instance facts
-   action: ec2_facts
-   register: ec2_facts
+# - name: Gather instance facts
+#   action: ec2_facts
+#   register: ec2_facts
   
 # - name: Rename
  #  action: ec2_tag resource={{ ec2_facts.ansible_facts.ansible_ec2_instance_id }} region='us-east-1' state=present
