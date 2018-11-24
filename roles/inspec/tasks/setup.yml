@@ -13,5 +13,9 @@
     dest: linux-baseline 
 
 - name: Executing a script
-  command: "inspec exec linux-baseline"
+  shell: "inspec exec linux-baseline"
+  register: shell_result
+  ignore_errors: True
 
+- debug:
+        var: shell_result.stdout_lines
