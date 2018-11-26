@@ -13,7 +13,7 @@
     dest: linux-baseline 
 
 - name: Executing a script
-  shell: "inspec exec linux-baseline"
+  shell: "inspec exec linux-baseline --no-color"
   register: shell_result
   ignore_errors: True
 

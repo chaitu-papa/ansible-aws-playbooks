@@ -27,6 +27,7 @@
     mode: '{{ os_passwd_perms.mode }}'
 
 - name: change su-binary to only be accessible to user and group root
+  become: yes
   file:
     dest: '/bin/su'
     owner: 'root'
