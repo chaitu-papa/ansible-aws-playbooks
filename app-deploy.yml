@@ -5,3 +5,4 @@
    roles:
        - tomcat-deploy  
        - elk-beats-config
+       - inspec
