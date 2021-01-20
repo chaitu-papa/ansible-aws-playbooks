@@ -11,10 +11,10 @@
   yum: pkg={{ item }}
         state=present
   with_items:
-      - https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.1-x86_64.rpm
-      - https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-6.0.1-x86_64.rpm
-      - https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-6.0.1-x86_64.rpm
-
+      - https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.3-x86_64.rpm
+      - https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.9.3-x86_64.rpm
+      - https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.9.3-x86_64.rpm
+      
 - name: Start beats
   become: yes
   service: name={{ item }} state=started enabled=yes
