@@ -6,4 +6,4 @@
   - include: ntp.yml
   - include: httpd.yml
   - include: ssh-config.yml
-  - include: nagios-client.yml
+#  - include: nagios-client.yml
